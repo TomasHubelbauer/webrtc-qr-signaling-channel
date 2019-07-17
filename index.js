@@ -71,7 +71,7 @@ window.addEventListener('load', async () => {
       shareTextArea.addEventListener('input', () => dataChannel.send(shareTextArea.value));
     });
 
-    dataChannel.addEventListener('message', shareTextArea.value = event.data);
+    dataChannel.addEventListener('message', event => shareTextArea.value = event.data);
     dataChannel.addEventListener('close', () => document.body.append(document.createTextNode('Offerer disconnected. ')));
     dataChannel.addEventListener('error', () => document.body.append(document.createTextNode('Offerer errored. ')));
   }
