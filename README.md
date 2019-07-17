@@ -45,3 +45,8 @@ the other to then notice.)
 
 Add a read-receipt style message to acknoweledge reception of a message on the
 other side.
+
+Research options of keeping the application alive while the device gets locked
+(maybe using a service worker? maybe there is a JS API for this?) and/or how to
+reconnect a peer connection that got interrupted by the lock (can reuse the same
+SDP?).
