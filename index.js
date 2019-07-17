@@ -38,7 +38,7 @@ window.addEventListener('load', async () => {
           context.drawImage(streamVideo, 0, 0);
           const { data, width, height } = context.getImageData(0, 0, frameCanvas.width, frameCanvas.height);
           const code = jsQR(data, width, height);
-          if (code) {
+          if (code && code.data) {
             mediaStream.getTracks().forEach(track => track.stop());
             streamVideo.remove();
             codeSvg.remove();
