@@ -65,15 +65,15 @@ window.addEventListener('load', async () => {
 
     dataChannel.addEventListener('open', () => {
       document.body.append(document.createTextNode('offerer connected'));
-      event.channel.send('hi, this is offerer');
+      dataChannel.send('hi, this is offerer');
 
       shareTextArea.disabled = false;
-      shareTextArea.addEventListener('input', () => event.channel.send(shareTextArea.value));
+      shareTextArea.addEventListener('input', () => dataChannel.send(shareTextArea.value));
     });
 
     dataChannel.addEventListener('message', event => document.body.append(document.createTextNode('message from answerer:' + event.data)));
-    event.channel.addEventListener('close', () => document.body.append(document.createTextNode('offerer disconnected')));
-    event.channel.addEventListener('error', () => document.body.append(document.createTextNode('offerer errored')));
+    dataChannel.addEventListener('close', () => document.body.append(document.createTextNode('offerer disconnected')));
+    dataChannel.addEventListener('error', () => document.body.append(document.createTextNode('offerer errored')));
   }
 
   function render(code, final) {
