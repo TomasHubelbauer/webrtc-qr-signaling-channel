@@ -34,8 +34,8 @@ Parse out important bits from the SDP either way and display only that in the
 codes so that they are easier to scan on both ends.
 
 Add a UI button for joining without using the phone QR scanner flow in case of
-connecting two laptops or not having a QR scanner on the phone. This will just
-need to add another bit of data to the code - if it is another offer or an
+connecting two laptops/phones or not having a QR scanner on the phone. This will
+just need to add another bit of data to the code - if it is another offer or an
 answer and based on it switch the flows. (Because by default both would show an
 offer and the one which notices each other first should display an answer for
 the other to then notice.)

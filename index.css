@@ -1,21 +1,21 @@
 @media (orientation: landscape) {
   #streamVideo {
-    height: 10vw;
+    height: 10vh;
   }
 
   #codeSvg {
-    height: 75vw;
+    height: 75vh;
     width: 100%;
   }
 }
 
 @media (orientation: portrait) {
   #streamVideo {
-    height: 10vh;
+    height: 10vw;
   }
 
   #codeSvg {
-    height: 75vh;
+    height: 75vw;
     width: 100%;
   }
 }
