@@ -42,3 +42,6 @@ just need to add another bit of data to the code - if it is another offer or an
 answer and based on it switch the flows. (Because by default both would show an
 offer and the one which notices each other first should display an answer for
 the other to then notice.)
+
+Add a read-receipt style message to acknoweledge reception of a message on the
+other side.
