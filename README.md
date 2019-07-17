@@ -1,5 +1,7 @@
 # WebRTC QR Signaling Channel
 
+[**LIVE**](https://tomashubelbauer.github.io/webrtc-qr-signaling-channel)
+
 - Start the application using `npx https-localhost`
 - Find out what the network URL of your laptop is (check `npx serve .` to find it)
 - Open the application on your laptop at the network URL
@@ -27,3 +29,13 @@ shows the states of both.
 
 Demonstrate the functionality by implementing a local storage syncing mechanism
 on top of the data channel peer connection.
+
+Parse out important bits from the SDP either way and display only that in the
+codes so that they are easier to scan on both ends.
+
+Add a UI button for joining without using the phone QR scanner flow in case of
+connecting two laptops or not having a QR scanner on the phone. This will just
+need to add another bit of data to the code - if it is another offer or an
+answer and based on it switch the flows. (Because by default both would show an
+offer and the one which notices each other first should display an answer for
+the other to then notice.)
