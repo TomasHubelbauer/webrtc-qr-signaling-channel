@@ -25,7 +25,7 @@ window.addEventListener('load', async () => {
     await peerConnection.setLocalDescription(await peerConnection.createOffer());
     peerConnection.addEventListener('icecandidate', async event => {
       const final = event.candidate === null;
-      render(location.origin + '?' + btoa(peerConnection.localDescription.sdp), final);
+      render(location.origin + location.pathname + '?' + btoa(peerConnection.localDescription.sdp), final);
       if (final) {
         const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
         streamVideo.srcObject = mediaStream;
