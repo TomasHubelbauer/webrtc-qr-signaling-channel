@@ -1,6 +1,7 @@
 window.addEventListener('load', async () => {
   const streamVideo = document.getElementById('streamVideo');
   const codeSvg = document.getElementById('codeSvg');
+  const shareTextArea = document.getElementById('shareTextArea');
 
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
   if (location.search) {
@@ -15,8 +16,17 @@ window.addEventListener('load', async () => {
     peerConnection.addEventListener('icecandidate', event => render(peerConnection.localDescription.sdp, event.candidate === null));
     peerConnection.addEventListener('datachannel', event => {
       codeSvg.remove();
-      event.channel.addEventListener('open', () => event.channel.send('answerer message'));
+      event.channel.addEventListener('open', () => {
+        document.body.append(document.createTextNode('answerer connected'));
+        event.channel.send('hi, this is answerer');
+
+        shareTextArea.disabled = false;
+        shareTextArea.addEventListener('input', () => event.channel.send(shareTextArea.value));
+      });
+
       event.channel.addEventListener('message', event => document.body.append(document.createTextNode('message from offerer:' + event.data)));
+      event.channel.addEventListener('close', () => document.body.append(document.createTextNode('answerer disconnected')));
+      event.channel.addEventListener('error', () => document.body.append(document.createTextNode('answerer errored')));
     });
   } else {
     /* Offer */
@@ -53,8 +63,17 @@ window.addEventListener('load', async () => {
       }
     });
 
-    dataChannel.addEventListener('open', () => dataChannel.send('offerer message'));
-    dataChannel.addEventListener('message', event => console.log('message from answerer:', event.data));
+    dataChannel.addEventListener('open', () => {
+      document.body.append(document.createTextNode('offerer connected'));
+      event.channel.send('hi, this is offerer');
+
+      shareTextArea.disabled = false;
+      shareTextArea.addEventListener('input', () => event.channel.send(shareTextArea.value));
+    });
+
+    dataChannel.addEventListener('message', event => document.body.append(document.createTextNode('message from answerer:' + event.data)));
+    event.channel.addEventListener('close', () => document.body.append(document.createTextNode('offerer disconnected')));
+    event.channel.addEventListener('error', () => document.body.append(document.createTextNode('offerer errored')));
   }
 
   function render(code, final) {

@@ -19,13 +19,12 @@ is enabled in the Camera app settings.
 
 ## To-Do
 
-Handle errors: camera permission not granted, WebRTC errors…
+Handle more states: user media handlers, peer connection handlers…
 
 Figure out why *ICE failed, add a TURN server and see about:webrtc for more
 details* happens even though I am able to successfully establish the connection.
 
-Add more handlers to the peer connection and the data channel and add UI which
-shows the states of both.
+Add UI which shows the states of the peer connection and the data channel.
 
 Demonstrate the functionality by implementing a local storage syncing mechanism
 on top of the data channel peer connection.
