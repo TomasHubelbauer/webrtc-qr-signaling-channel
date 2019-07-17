@@ -27,7 +27,11 @@ details* happens even though I am able to successfully establish the connection.
 Add UI which shows the states of the peer connection and the data channel.
 
 Demonstrate the functionality by implementing a local storage syncing mechanism
-on top of the data channel peer connection.
+on top of the data channel peer connection. Send only diffs instead of the full
+data with each change and on the other end patch the existing content with the
+change. Also probably add version number and ensure the current messags one is
+one larger than the last one so we didn't miss messages. If it is the same we
+have a conflict and need to present resolution UI.
 
 Parse out important bits from the SDP either way and display only that in the
 codes so that they are easier to scan on both ends.
