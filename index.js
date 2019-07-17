@@ -17,16 +17,16 @@ window.addEventListener('load', async () => {
     peerConnection.addEventListener('datachannel', event => {
       codeSvg.remove();
       event.channel.addEventListener('open', () => {
-        document.body.append(document.createTextNode('answerer connected'));
+        document.body.append(document.createTextNode('Answerer connected. '));
         event.channel.send('hi, this is answerer');
 
         shareTextArea.disabled = false;
         shareTextArea.addEventListener('input', () => event.channel.send(shareTextArea.value));
       });
 
-      event.channel.addEventListener('message', event => document.body.append(document.createTextNode('message from offerer:' + event.data)));
-      event.channel.addEventListener('close', () => document.body.append(document.createTextNode('answerer disconnected')));
-      event.channel.addEventListener('error', () => document.body.append(document.createTextNode('answerer errored')));
+      event.channel.addEventListener('message', event => shareTextArea.value = event.data);
+      event.channel.addEventListener('close', () => document.body.append(document.createTextNode('Answerer disconnected. ')));
+      event.channel.addEventListener('error', () => document.body.append(document.createTextNode('Answerer errored. ')));
     });
   } else {
     /* Offer */
@@ -64,16 +64,16 @@ window.addEventListener('load', async () => {
     });
 
     dataChannel.addEventListener('open', () => {
-      document.body.append(document.createTextNode('offerer connected'));
+      document.body.append(document.createTextNode('Offerer connected. '));
       dataChannel.send('hi, this is offerer');
 
       shareTextArea.disabled = false;
       shareTextArea.addEventListener('input', () => dataChannel.send(shareTextArea.value));
     });
 
-    dataChannel.addEventListener('message', event => document.body.append(document.createTextNode('message from answerer:' + event.data)));
-    dataChannel.addEventListener('close', () => document.body.append(document.createTextNode('offerer disconnected')));
-    dataChannel.addEventListener('error', () => document.body.append(document.createTextNode('offerer errored')));
+    dataChannel.addEventListener('message', shareTextArea.value = event.data);
+    dataChannel.addEventListener('close', () => document.body.append(document.createTextNode('Offerer disconnected. ')));
+    dataChannel.addEventListener('error', () => document.body.append(document.createTextNode('Offerer errored. ')));
   }
 
   function render(code, final) {
