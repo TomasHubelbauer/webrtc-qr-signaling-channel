@@ -15,6 +15,7 @@ window.addEventListener('load', async () => {
     await peerConnection.setLocalDescription(await peerConnection.createAnswer());
     peerConnection.addEventListener('icecandidate', event => render(peerConnection.localDescription.sdp, event.candidate === null));
     peerConnection.addEventListener('datachannel', event => {
+      streamVideo.remove();
       codeSvg.remove();
       event.channel.addEventListener('open', () => {
         document.body.append(document.createTextNode('Answerer connected. '));
