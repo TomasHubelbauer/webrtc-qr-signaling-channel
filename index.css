@@ -28,3 +28,8 @@
 #codeSvg:not(.final) {
   opacity: .5;
 }
+
+#shareTextArea {
+  display: block;
+  height: 75vh;
+}
