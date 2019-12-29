@@ -19,34 +19,40 @@ is enabled in the Camera app settings.
 
 ## To-Do
 
-Handle more states: user media handlers, peer connection handlers…
+### Handle more states: user media handlers, peer connection handlers…
 
-Figure out why *ICE failed, add a TURN server and see about:webrtc for more
-details* happens even though I am able to successfully establish the connection.
+### Figure out why *ICE failed, add a TURN server and see about:webrtc for more details* happens
 
-Add UI which shows the states of the peer connection and the data channel.
+Even though I am able to successfully establish the connection.
 
-Demonstrate the functionality by implementing a local storage syncing mechanism
-on top of the data channel peer connection. Send only diffs instead of the full
+### Add UI which shows the states of the peer connection and the data channel
+
+### Demonstrate the functionality by implementing a local storage syncing mechanism
+
+On top of the data channel peer connection. Send only diffs instead of the full
 data with each change and on the other end patch the existing content with the
 change. Also probably add version number and ensure the current messags one is
 one larger than the last one so we didn't miss messages. If it is the same we
 have a conflict and need to present resolution UI.
 
-Parse out important bits from the SDP either way and display only that in the
-codes so that they are easier to scan on both ends.
+### Parse out important bits from the SDP either way and display only that
 
-Add a UI button for joining without using the phone QR scanner flow in case of
-connecting two laptops/phones or not having a QR scanner on the phone. This will
+In the codes so that they are easier to scan on both ends.
+
+### Add a UI button for joining without using the phone QR scanner flow
+
+In case of connecting two laptops/phones or not having a QR scanner on the phone. This will
 just need to add another bit of data to the code - if it is another offer or an
 answer and based on it switch the flows. (Because by default both would show an
 offer and the one which notices each other first should display an answer for
 the other to then notice.)
 
-Add a read-receipt style message to acknoweledge reception of a message on the
-other side.
+### Add a read-receipt style message to acknowledge reception of a message on the other side
 
-Research options of keeping the application alive while the device gets locked
+### Research options of keeping the application alive while the device gets locked
+
 (maybe using a service worker? maybe there is a JS API for this?) and/or how to
 reconnect a peer connection that got interrupted by the lock (can reuse the same
 SDP?).
+
+### Research fountation codes for more efficient message transfer
